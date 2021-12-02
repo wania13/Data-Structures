@@ -24,7 +24,6 @@ Node* insertAtBegin(Node *head,int data){
 
 //insertion at the end
 void insertAtEnd(Node *head,int data){
-    
     Node *newNode=new Node;
     newNode->data=data;
     newNode->next=NULL;
@@ -32,9 +31,7 @@ void insertAtEnd(Node *head,int data){
     while(head->next!=NULL){
         head=head->next;
     }
-    
     head->next=newNode;
-    
 }
 
 // insert at giver location
@@ -70,14 +67,50 @@ void insertAfterNode(Node *head,Node *desiredNode,int data){
 
 // delete from begin
 Node* deleteFromBegin(Node *head){
-     head=head->next;
-     return head;
+    Node *ptr =head;
+    head=head->next;
+    free(ptr);
+    return head;
 }
+
+//delete the last Node 
+void deleteLastNode(Node *head){
+    //grabing the previous node with
+    //the help of Null of last node
+    Node *preNode=head;
+    head=head->next;
+    while (head->next!=NULL){
+        head=head->next;
+        preNode=preNode->next;
+    }
+    preNode->next=NULL;
+    free(head);
+}
+
+// deleting the Node with given data
+void deleteNodeWithValue(Node *head, int data){
+    Node *preNode=head;
+    head=head->next;
+    while (head!=NULL){
+       if(head->data==data){
+           preNode->next=head->next;
+           free(head);
+           break;
+       }
+       head=head->next;
+       preNode=preNode->next;
+    }
+}
+
+
+
 
 // deleting at a given index
 void deleteAtIndex(Node *head,int index){
     int myindex=1;
     Node *preNode;
+    Node *ptr;
+    
     
     while(head!=NULL){
         
@@ -89,10 +122,13 @@ void deleteAtIndex(Node *head,int index){
         //updating next of previous node with the next of current node 
         if(myindex==index){
             preNode->next=head->next;
+            ptr=head;
+            free(ptr);
         }
         head=head->next;
         myindex=myindex+1;
     }
+    
 }
 
 
@@ -101,6 +137,28 @@ void UpdateFirst(Node *head,int data){
     head->data=data;
 }
 
+
+// updating at any given index
+void updateAtIndex(Node *head,int index,int datatoUpdate){
+    int myindex=1;
+    while(myindex<=index){
+        if (myindex==index){
+            head->data=datatoUpdate;
+        }
+        myindex++;
+        head=head->next;
+    }
+}
+
+// Update data by giving data 
+void updateAtValue(Node *head,int data, int dataToUpdate){
+    while(head!=NULL){
+        if (head->data==data){
+            head->data=dataToUpdate;
+        }
+        head=head->next;
+    }
+}
 
 int main()
 {
@@ -127,15 +185,17 @@ int main()
  
     // head=insertAtBegin(head,0);         //insert First Node
     // insertAtEnd(head,69);               //insert at the end 
-    // insertAtIndex(head,70,4);           //insert at a given index
-    // insertAfterNode(head,fourth,700);   //insert after desired node 
+    // insertAtIndex(head,7000,3);         //insert at a given index (cannot insert in the beginning)
+    // insertAfterNode(head,head,700);     //insert after desired node 
     
-    // head=DeleteFromBegin(head);   //detele first Node 
-    // deleteAtIndex(head,4);        //delete at a given index
-    // UpdateFirst(head,88);        //update first Node 
-   
-   
- 
+    // head=deleteFromBegin(head);         //detele first Node 
+    // deleteAtIndex(head,1);              //delete at a given index (cannot delete the starting node)
+    // deleteLastNode(head);               //delete the last node
+    // deleteNodeWithValue(head,4);        //delete by giving data (cannot delete the starting node)
+    
+    // UpdateFirst(head,88);               //update first Node 
+    // updateAtIndex(head,1,400);          //update any value by giving index of node;
+    // updateAtValue(head,1,400);          //update any Value by giving data 
     
     Traverse(head);
 
