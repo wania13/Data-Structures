@@ -15,7 +15,7 @@ void Traverse(Node *myNode){
 }
 
 // insertion at begin
-Node* InsertAtBegin(Node *head,int data){
+Node* insertAtBegin(Node *head,int data){
     Node *newNode=new Node;
     newNode->data=data;
     newNode->next=head;
@@ -38,7 +38,7 @@ void insertAtEnd(Node *head,int data){
 }
 
 // insert at giver location
-void InsertAtIndex(Node *head, int data,int index){
+void insertAtIndex(Node *head, int data,int index){
     
     int myindex=1;
    
@@ -57,16 +57,25 @@ void InsertAtIndex(Node *head, int data,int index){
     } 
 }
 
-//insertion after desired node 
+//insert after a desired Node
+void insertAfterNode(Node *head,Node *desiredNode,int data){
+    Node *newNode=new Node;
+    newNode->data=data;
+    newNode->next=desiredNode->next;
+    desiredNode->next=newNode;
+}
+
+
+
 
 // delete from begin
-Node* DeleteFromBegin(Node *head){
+Node* deleteFromBegin(Node *head){
      head=head->next;
      return head;
 }
 
 // deleting at a given index
-void DeleteAtIndex(Node *head,int index){
+void deleteAtIndex(Node *head,int index){
     int myindex=1;
     Node *preNode;
     
@@ -116,12 +125,13 @@ int main()
     fourth->next=NULL;
     
  
-    // head=InsertAtBegin(head,0);   //insert First Node
-    // insertAtEnd(head,69);         //insert at the end 
-    // InsertAtIndex(head,70,4);     //insert at a given index
+    // head=insertAtBegin(head,0);         //insert First Node
+    // insertAtEnd(head,69);               //insert at the end 
+    // insertAtIndex(head,70,4);           //insert at a given index
+    // insertAfterNode(head,fourth,700);   //insert after desired node 
     
     // head=DeleteFromBegin(head);   //detele first Node 
-    // DeleteAtIndex(head,4);        //delete at a given index
+    // deleteAtIndex(head,4);        //delete at a given index
     // UpdateFirst(head,88);        //update first Node 
    
    
@@ -131,4 +141,3 @@ int main()
 
     return 0;
 }
-
