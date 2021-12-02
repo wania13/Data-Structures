@@ -139,11 +139,11 @@ void UpdateFirst(Node *head,int data){
 
 
 // updating at any given index
-void updateAtIndex(Node *head,int index,int datatoUpdate){
+void updateAtIndex(Node *head,int index,int newData){
     int myindex=1;
     while(myindex<=index){
         if (myindex==index){
-            head->data=datatoUpdate;
+            head->data=newData;
         }
         myindex++;
         head=head->next;
@@ -151,10 +151,10 @@ void updateAtIndex(Node *head,int index,int datatoUpdate){
 }
 
 // Update data by giving data 
-void updateAtValue(Node *head,int data, int dataToUpdate){
+void updateAtValue(Node *head,int dataToUpdate, int data){
     while(head!=NULL){
-        if (head->data==data){
-            head->data=dataToUpdate;
+        if (head->data== dataToUpdate){
+            head->data=data;
         }
         head=head->next;
     }
